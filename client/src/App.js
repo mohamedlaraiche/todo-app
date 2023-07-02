@@ -23,7 +23,7 @@ const App = () => {
       swal("Please add a todo first");
     } else {
       const response = await axios.post(
-        `https://todo-api-production-015a.up.railway.app/api/todos/create`,
+        `https://todo-app-api-qojs.onrender.com/api/todos/create`,
         {
           Todo: add,
         }
@@ -38,7 +38,7 @@ const App = () => {
   // get Todos
   const getTodos = async () => {
     const response = await axios.get(
-      "https://todo-api-production-015a.up.railway.app/api/todos"
+      "https://todo-app-api-qojs.onrender.com/api/todos"
     );
     const data = await response.data;
     setTodos(data.data);
@@ -63,9 +63,7 @@ const App = () => {
         swal("Poof! Your Todo has been deleted!", {
           icon: "success",
         });
-        axios.delete(
-          `https://todo-api-production-015a.up.railway.app/api/todos/${id}`
-        );
+        axios.delete(`https://todo-app-api-qojs.onrender.com/api/todos/${id}`);
         const newList = Todos.filter((todo) => todo._id !== id);
         setTodos(newList);
       } else {
@@ -79,12 +77,9 @@ const App = () => {
     e.preventDefault();
     console.log(editId);
     await axios
-      .put(
-        `https://todo-api-production-015a.up.railway.app/api/todos/${editId}`,
-        {
-          Todo: update,
-        }
-      )
+      .put(`https://todo-app-api-qojs.onrender.com/api/todos/${editId}`, {
+        Todo: update,
+      })
       .then(() =>
         setTodos(
           Todos.map((todo) => (todo._id === editId ? { Todo: update } : todo))
